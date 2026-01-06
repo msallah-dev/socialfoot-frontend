@@ -16,8 +16,8 @@ _____________________________
 1. Clonez ce dépôt :  
 
    ```bash
-   git clone 
-   cd 
+   git clone https://github.com/msallah-dev/socialfoot-frontend.git
+   cd socialfoot-react
 
 2. Installez les dépendances :
 
@@ -52,14 +52,15 @@ Pour lancer le serveur de développement :
 
  ## Structure du projet
 
- src/
-├─ actions/      # Actions pour Redux ou gestion d'état
-├─ reducers/     # Reducers pour Redux ou gestion d'état
-├─ components/   # Composants React
-├─ pages/        # Pages de l'application
-├─ styles/       # Styles de l'application.
-├─ App.tsx       # Composant principal
-└─ main.tsx      # Point d'entrée
+  ```bash
+   src/
+  ├─ actions/      # Actions pour Redux ou gestion d'état
+  ├─ reducers/     # Reducers pour Redux ou gestion d'état
+  ├─ components/   # Composants React
+  ├─ pages/        # Pages de l'application
+  ├─ styles/       # Styles de l'application
+  ├─ App.tsx       # Composant principal
+  └─ main.tsx      # Point d'entrée
 
 _____________________________
 
