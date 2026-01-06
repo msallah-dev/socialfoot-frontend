@@ -52,8 +52,8 @@ Pour lancer le serveur de développement :
 
  ## Structure du projet
 
-  ```bash
-   src/
+```bash
+src/
   ├─ actions/      # Actions pour Redux ou gestion d'état
   ├─ reducers/     # Reducers pour Redux ou gestion d'état
   ├─ components/   # Composants React
@@ -61,7 +61,7 @@ Pour lancer le serveur de développement :
   ├─ styles/       # Styles de l'application
   ├─ App.tsx       # Composant principal
   └─ main.tsx      # Point d'entrée
-
+```
 _____________________________
 
 👨‍💻 Auteur
