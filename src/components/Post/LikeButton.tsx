@@ -5,9 +5,12 @@ import "reactjs-popup/dist/index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { likePost, unlikePost } from "../../actions/post.actions";
 import type { AppDispatch, RootState } from "../../main";
+import UserImage from "../Profil/UserImage";
+import FollowHandler from "../Profil/FollowHandler";
 
 const LikeButton = ({ post }: { post: any }) => {
   const [liked, setLiked] = useState<boolean>(false);
+  const [likersPopup, setLikersPopup] = useState<boolean>(false);
   const status = useContext(StatusContext);
   const userData = useSelector((state: RootState) => state.userReducer)
   const dispatch = useDispatch<AppDispatch>();
@@ -50,7 +53,36 @@ const LikeButton = ({ post }: { post: any }) => {
       {status && liked && (
         <img src="./images/icons/heart-filled.svg" onClick={unlike} alt="unlike" />
       )}
-      <span>{post.likes.length}</span>
+      <span onClick={() => setLikersPopup(true)}>{post.likes.length}</span>
+
+      {post.likes.length > 0 && likersPopup && (
+        <div className="popup-profil-container">
+          <div className="modal">
+            <h3>Réactions</h3>
+            <span className="cross" onClick={() => setLikersPopup(false)}>
+              &#10005;
+            </span>
+            <ul>
+              {post.likes.map((like: any) => {
+                return (
+                  <li key={like.user.id_user}>
+                    <UserImage userId={like.user.id_user} blob="" />
+                    <h4>{like.user.name}</h4>
+
+                    {status && userData?.id_user !== Number(like.user.id_user) &&
+                      <div className="follow-handler">
+                        <FollowHandler idToFollow={like.user.id_user} type={'suggestion'} />
+                      </div>
+                    }
+
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

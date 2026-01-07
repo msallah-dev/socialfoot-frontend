@@ -102,7 +102,7 @@ const UpdateProfil = ({ userData }: { userData: UserState }) => {
           </h5>
         </div>
       </div>
-      {followingPopup && (
+      {userData.following.length > 0 && followingPopup && (
         <div className="popup-profil-container">
           <div className="modal">
             <h3>Abonnements</h3>
@@ -126,7 +126,7 @@ const UpdateProfil = ({ userData }: { userData: UserState }) => {
         </div>
       )}
 
-      {followersPopup && (
+      {userData.followers.length > 0 && followersPopup && (
         <div className="popup-profil-container">
           <div className="modal">
             <h3>Abonnés</h3>
