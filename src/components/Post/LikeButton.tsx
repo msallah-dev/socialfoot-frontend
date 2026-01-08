@@ -56,7 +56,7 @@ const LikeButton = ({ post }: { post: any }) => {
       <span onClick={() => setLikersPopup(true)}>{post.likes.length}</span>
 
       {post.likes.length > 0 && likersPopup && (
-        <div className="popup-profil-container">
+        <div className="popup-container">
           <div className="modal">
             <h3>Réactions</h3>
             <span className="cross" onClick={() => setLikersPopup(false)}>
@@ -67,7 +67,11 @@ const LikeButton = ({ post }: { post: any }) => {
                 return (
                   <li key={like.user.id_user}>
                     <UserImage userId={like.user.id_user} blob="" />
-                    <h4>{like.user.name}</h4>
+                    {userData?.id_user === Number(like.user.id_user) ?
+                      <h4>Vous</h4>
+                      :
+                      <h4>{like.user.name}</h4>
+                    }
 
                     {status && userData?.id_user !== Number(like.user.id_user) &&
                       <div className="follow-handler">

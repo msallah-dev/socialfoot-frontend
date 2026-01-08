@@ -415,7 +415,7 @@
         transform: translate(8px, -1px);
       }
 
-      .popup-profil-container {
+      .popup-container {
         z-index: 100;
         width: 100%;
         top: 0;
@@ -468,6 +468,7 @@
 
           ul {
             margin: 20px 0 0;
+            padding-right: 25px;
             max-height: 500px;
             overflow-y: scroll;
             overflow-x: hidden;
@@ -508,7 +509,8 @@
               }
 
               .follow-handler {
-                text-align: left;
+                display: flex;
+                align-items: center;
 
                 button {
                   background: $color-4;

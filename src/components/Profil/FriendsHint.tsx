@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 import FollowHandler from "./FollowHandler";
-import type { UserState } from "../../main";
+import type { User, UserState } from "../../main";
 import UserImage from "./UserImage";
 
 const FriendsHint = ({ userData }: { userData: UserState }) => {
+    const [noFollowings, setNoFollowings] = useState<User[]>(userData.noFollowing);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [playOnce, setPlayOnce] = useState<boolean>(false);
 
     useEffect(() => {
         const notFriendList = () => {
-            if (userData.noFollowing) {
-                userData.noFollowing.sort(() => 0.5 - Math.random());
+            if (noFollowings) {
+                noFollowings.sort(() => 0.5 - Math.random());
 
                 if (window.innerHeight > 780) {
-                    userData.noFollowing.length = 5;
+                    setNoFollowings(noFollowings.slice(0, 5));
                 } else if (window.innerHeight > 720) {
-                    userData.noFollowing.length = 4;
+                    setNoFollowings(noFollowings.slice(0, 4));
                 } else if (window.innerHeight > 615) {
-                    userData.noFollowing.length = 3;
+                    setNoFollowings(noFollowings.slice(0, 3));
                 } else if (window.innerHeight > 540) {
-                    userData.noFollowing.length = 1;
+                    setNoFollowings(noFollowings.slice(0, 1));
                 }
 
                 setIsLoading(false);
@@ -29,7 +30,7 @@ const FriendsHint = ({ userData }: { userData: UserState }) => {
 
         if (!playOnce) notFriendList();
 
-    }, [userData.noFollowing, playOnce]);
+    }, [noFollowings, playOnce]);
 
     return (
         <div className="get-friends-container">
@@ -40,19 +41,18 @@ const FriendsHint = ({ userData }: { userData: UserState }) => {
                 </div>
             ) : (
                 <ul>
-                    {userData.noFollowing && userData.noFollowing.length > 0 &&
-                        userData.noFollowing.map((user) => {
-                            return (
-                                <li className="user-hint" key={user.id_user}>
-                                    <UserImage userId={user.id_user} blob="" />
-                                    <p>{user.name}</p>
-                                    <FollowHandler
-                                        idToFollow={user.id_user}
-                                        type={"suggestion"}
-                                    />
-                                </li>
-                            );
-                        })}
+                    {noFollowings.map((user) => {
+                        return (
+                            <li className="user-hint" key={user.id_user}>
+                                <UserImage userId={user.id_user} blob="" />
+                                <p>{user.name}</p>
+                                <FollowHandler
+                                    idToFollow={user.id_user}
+                                    type={"suggestion"}
+                                />
+                            </li>
+                        );
+                    })}
                 </ul>
             )}
         </div>

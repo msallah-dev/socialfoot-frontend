@@ -9,7 +9,7 @@ import FollowHandler from "./FollowHandler";
 import UserImage from "./UserImage";
 
 const UpdateProfil = ({ userData }: { userData: UserState }) => {
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>(userData.email);
   const [password, setPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [updateForm, setUpdateForm] = useState(false);
@@ -28,7 +28,8 @@ const UpdateProfil = ({ userData }: { userData: UserState }) => {
   };
 
   useEffect(() => {
-    if (!email && userData.email) setEmail(userData.email)
+    if (userData.following.length === 0) setFollowingPopup(false);
+    if (userData.followers.length === 0) setFollowersPopup(false);
 
     if (userData.update && userData.update.success) {
       setEmail("");
@@ -94,11 +95,11 @@ const UpdateProfil = ({ userData }: { userData: UserState }) => {
 
           </div>
           <h4>Membre depuis le : {dateParser(userData.created_at)}</h4>
-          <h5 onClick={() => setFollowingPopup(true)}>
-            Abonnements : {userData.following ? userData.following.length : ""}
+          <h5 onClick={() => userData.following.length > 0 && setFollowingPopup(true)}>
+            Abonnements : {userData.following.length || 0}
           </h5>
-          <h5 onClick={() => setFollowersPopup(true)}>
-            Abonnés : {userData.followers ? userData.followers.length : ""}
+          <h5 onClick={() => userData.followers.length > 0 && setFollowersPopup(true)}>
+            Abonnés : {userData.followers.length || 0}
           </h5>
         </div>
       </div>
