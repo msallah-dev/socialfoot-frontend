@@ -12,8 +12,8 @@ export const UNFOLLOW_USER = "UNFOLLOW_USER";
 export const NOFOLLOWEDS_USERS = "NOFOLLOWEDS_USERS";
 
 export const getUser = () => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "get",
             url: `${import.meta.env.VITE_APP_API_URL}users/profile`,
             withCredentials: true,
@@ -27,20 +27,20 @@ export const getUser = () => {
 };
 
 export const uploadPicture = (data: FormData, userId: string) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "post",
             url: `${import.meta.env.VITE_APP_API_URL}upload/profil`,
             data,
             withCredentials: true,
         })
-            .then((res) => {
+            .then(async (res) => {
                 if (res.data.error) {
                     dispatch({ type: GET_USER_ERRORS_IMAGE, payload: res.data.error });
                 } else {
                     dispatch({ type: GET_USER_ERRORS_IMAGE, payload: "" });
 
-                    axios({
+                    await axios({
                         method: "get",
                         url: `${import.meta.env.VITE_APP_API_URL}users/picture/profil/${userId}`,
                         responseType: "blob",
@@ -58,16 +58,16 @@ export const uploadPicture = (data: FormData, userId: string) => {
 };
 
 export const updateUser = (userId: number, email: string, newEmail: string, password: string, newPassword: string) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "post",
             url: `${import.meta.env.VITE_APP_API_URL}auth/check-password`,
             data: { email, password },
             withCredentials: true,
         })
-            .then((res) => {
+            .then(async (res) => {
                 if (res.data.success) {
-                    axios({
+                    await axios({
                         method: "patch",
                         url: `${import.meta.env.VITE_APP_API_URL}users/${userId}`,
                         data: { email: newEmail, password: newPassword },
@@ -104,8 +104,8 @@ export const updateUser = (userId: number, email: string, newEmail: string, pass
 }
 
 export const followUser = (idToFollow: number) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "post",
             url: `${import.meta.env.VITE_APP_API_URL}follows`,
             data: { followId: idToFollow },
@@ -120,8 +120,8 @@ export const followUser = (idToFollow: number) => {
 }
 
 export const unfollowUser = (idToFollow: number) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "delete",
             url: `${import.meta.env.VITE_APP_API_URL}follows/${idToFollow}`,
             withCredentials: true,
@@ -135,8 +135,8 @@ export const unfollowUser = (idToFollow: number) => {
 }
 
 export const noFolloweds = () => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "get",
             url: `${import.meta.env.VITE_APP_API_URL}follows/nofolloweds`,
             withCredentials: true,

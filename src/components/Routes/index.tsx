@@ -3,6 +3,7 @@ import Home from "../../pages/Home";
 import Profil from "../../pages/Profil";
 import Trending from "../../pages/Trending";
 import NavBar from "../NavBar";
+import ResetPasswordPage from "../Log/ResetPasswordPage";
 
 const index = () => {
     return (
@@ -13,6 +14,7 @@ const index = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/profil" element={<Profil />} />
                     <Route path="/trending" element={<Trending />} />
+                    <Route path="/reinitialiser-mot-de-passe" element={<ResetPasswordPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </Router>

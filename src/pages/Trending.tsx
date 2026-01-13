@@ -29,7 +29,7 @@ const Trending = () => {
             <div className="right-side">
                 <div className="right-side-container">
                     <Trends />
-                    {status && userData && <FriendsHint userData={userData} />}
+                    {status && userData?.noFollowing && <FriendsHint userData={userData} />}
                 </div>
             </div>
         </div>

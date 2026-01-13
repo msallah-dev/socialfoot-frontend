@@ -1,19 +1,29 @@
 import { useState } from "react";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import ForgotPassword from "./ForgotPassword";
 
 const index = (props: any) => {
     const [signIn, setSignIn] = useState(props.signin);
     const [signUp, setSignUp] = useState(props.signup);
+    const [forgotPassword, setForgotPassword] = useState<boolean>(props.forgotPassword);
     const [success, setSuccess] = useState<boolean>(false);
 
-    const handleModals = (e: any) => {
-        if (e.target.id === 'register') {
+    const handleModals = (e: React.MouseEvent<HTMLElement>) => {
+        const id = e.currentTarget.id;
+
+        if (id === 'register') {
             setSignIn(false);
             setSignUp(true);
-        } else if (e.target.id === 'login') {
+            setForgotPassword(false);
+        } else if (id === 'login') {
             setSignIn(true);
             setSignUp(false);
+            setForgotPassword(false);
+        } else if (id === 'forgot') {
+            setSignIn(false);
+            setSignUp(false);
+            setForgotPassword(true);
         }
     }
 
@@ -36,12 +46,13 @@ const index = (props: any) => {
                         Se connecter
                     </li>
                 </ul>
-                {signIn && <SignInForm success={success} />}
+                {signIn && <SignInForm success={success} handleModals={handleModals} />}
                 {signUp && <SignUpForm onSuccess={() => {
                     setSignIn(true);
                     setSignUp(false);
                     setSuccess(true);
                 }} />}
+                {forgotPassword && <ForgotPassword />}
             </div>
         </div>
     );

@@ -56,8 +56,8 @@ const UpdateProfil = ({ userData }: { userData: UserState }) => {
           <p>{errorImage}</p>
         </div>
         <div className="right-part">
-          <div className="bio-update">
-            <span className="succes">{userData.update ? userData.update.message : ''}</span>
+          <div className="profil-update">
+            {userData.update && <span className="succes">{userData.update.message}</span>}
             <h3>E-mail</h3>
             {updateForm === false && (
               <>

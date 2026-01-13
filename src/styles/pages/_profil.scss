@@ -112,6 +112,31 @@
         a {
           color: rgb(62, 62, 214);
         }
+
+        #forgot {
+          display: inline-block;
+          margin-top: 20px;
+          color: $color-5;
+          text-decoration: underline;
+          font-size: 14px;
+          font-weight: normal;
+          cursor: pointer;
+          transition: color 0.9s;
+
+          &:hover {
+            color: #1450A0;
+          }
+        }
+      }
+
+      #forgot-password-form p {
+        font-size: 14px;
+        color: $color-6;
+        line-height: 1.5;
+      }
+
+      #forgot-password-form span {
+        color: $color-7;
       }
     }
   }
@@ -289,6 +314,12 @@
         color: red;
         font-family: $font-3;
         margin-top: 6px;
+      }
+
+      .profil-update .succes {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: $color-7;
       }
     }
   }

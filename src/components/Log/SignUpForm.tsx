@@ -36,7 +36,6 @@ const SignUpForm = ({ onSuccess }: any) => {
                 },
             })
                 .then((res) => {
-                    console.log(res.data);
                     if(res.data.errors){
                         errors('email').innerHTML = res.data.errors.email;
                     }else{

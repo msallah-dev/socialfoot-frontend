@@ -32,7 +32,7 @@ const Home = () => {
                     <div className="wrapper">
                         <Trends />
                         {
-                            status && userData &&
+                            status && userData?.noFollowing &&
                             <FriendsHint userData={userData} />
                         }
                     </div>

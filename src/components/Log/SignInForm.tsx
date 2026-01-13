@@ -2,9 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { errors, getMessageError } from "../Utils";
 
-const SignInForm = (props: any) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+interface SignInFormProps {
+    success: boolean;
+    handleModals: (e: React.MouseEvent<HTMLElement>) => void;
+}
+
+const SignInForm = ({ success, handleModals }: SignInFormProps) => {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const handleLogin = async (e: any) => {
         e.preventDefault();
@@ -61,7 +66,10 @@ const SignInForm = (props: any) => {
             <div className="password error"></div>
             <br />
             <input type="submit" value="Se connecter" />
-            {props.success &&
+            <br />
+            <span id="forgot" onClick={handleModals}>Mot de passe oublié ?</span>
+
+            {success &&
                 <span>
                     <h4 className="success">
                         Enregistrement réussi, veuillez-vous connecter

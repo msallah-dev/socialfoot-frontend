@@ -14,8 +14,8 @@ export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 export const getPosts = () => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "get",
             url: `${import.meta.env.VITE_APP_API_URL}posts`,
             withCredentials: true,
@@ -40,13 +40,13 @@ export const addPost = (content: string, file: File | null, video: string) => {
             data: { content: content, video: video },
             withCredentials: true,
         })
-            .then((res) => {
+            .then(async (res) => {
                 const postId = res.data.data.id_post;
                 if (file) {
                     const data = new FormData();
                     data.append('postId', postId);
                     data.append('file', file);
-                    axios({
+                    await axios({
                         method: "post",
                         url: `${import.meta.env.VITE_APP_API_URL}upload/post`,
                         data,
@@ -91,8 +91,8 @@ export const addPost = (content: string, file: File | null, video: string) => {
 }
 
 export const updatePost = (postId: number, text: string, video?: string | null) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "patch",
             url: `${import.meta.env.VITE_APP_API_URL}posts/${postId}`,
             data: { content: text, video: video },
@@ -128,16 +128,16 @@ export const updatePost = (postId: number, text: string, video?: string | null) 
 }
 
 export const deletePost = (postId: number) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "delete",
             url: `${import.meta.env.VITE_APP_API_URL}posts/${postId}`,
             withCredentials: true,
         })
-            .then((res) => {
+            .then(async (res) => {
                 if (res.data.success) {
                     // Supprimer la photo si y en a 
-                    axios({
+                    await axios({
                         method: "delete",
                         url: `${import.meta.env.VITE_APP_API_URL}posts/picture/post/${postId}.jpg`,
                         withCredentials: true,
@@ -153,8 +153,8 @@ export const deletePost = (postId: number) => {
 }
 
 export const likePost = (postId: number) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "post",
             url: `${import.meta.env.VITE_APP_API_URL}likes`,
             data: { postId: postId },
@@ -173,8 +173,8 @@ export const likePost = (postId: number) => {
 }
 
 export const unlikePost = (postId: number, userId: number) => {
-    return (dispatch: AppDispatch) => {
-        axios({
+    return async (dispatch: AppDispatch) => {
+        await axios({
             method: "delete",
             url: `${import.meta.env.VITE_APP_API_URL}likes/${postId}`,
             withCredentials: true,
