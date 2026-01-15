@@ -19,7 +19,8 @@ const initialState: UserState = {
     blob: '',
     following: [],
     followers: [],
-    noFollowing: []
+    noFollowing: [],
+    shares: []
 };
 
 export default function userReducer(state = initialState, action: any) {

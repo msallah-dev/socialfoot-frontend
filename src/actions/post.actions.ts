@@ -9,6 +9,8 @@ export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
+export const SHARE_POST = "SHARE_POST";
+export const UNSHARE_POST = "UNSHARE_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
@@ -182,6 +184,41 @@ export const unlikePost = (postId: number, userId: number) => {
             .then((res) => {
                 if (res.data.success)
                     dispatch({ type: UNLIKE_POST, payload: { postId, userId } });
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const sharePost = (postId: number) => {
+    return async (dispatch: AppDispatch) => {
+        await axios({
+            method: "post",
+            url: `${import.meta.env.VITE_APP_API_URL}shares`,
+            data: { postId: postId },
+            withCredentials: true,
+        })
+            .then((res) => {
+                if (res.data.success) {
+                    dispatch({
+                        type: SHARE_POST,
+                        payload: { share: res.data.data, postId }
+                    });
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const unsharePost = (postId: number, userId: number) => {
+    return async (dispatch: AppDispatch) => {
+        await axios({
+            method: "delete",
+            url: `${import.meta.env.VITE_APP_API_URL}shares/${postId}`,
+            withCredentials: true,
+        })
+            .then((res) => {
+                if (res.data.success)
+                    dispatch({ type: UNSHARE_POST, payload: { postId, userId } });
             })
             .catch((err) => console.log(err))
     }

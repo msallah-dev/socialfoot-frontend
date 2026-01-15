@@ -193,7 +193,7 @@
       align-items: center;
       justify-content: center;
       justify-content: space-between;
-      padding: 12px 0 4px;
+      padding: 12px 12px 4px;
 
       img {
         height: 22px;
@@ -207,7 +207,8 @@
       }
 
       .comment-icon,
-      .like-container {
+      .like-container,
+      .share-container {
         display: flex;
         align-items: center;
 
@@ -407,7 +408,8 @@
       }
     }
 
-    .like-container {
+    .like-container,
+    .share-container {
       span {
         font-size: 1.02rem;
         position: absolute;

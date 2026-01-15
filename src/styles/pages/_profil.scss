@@ -14,7 +14,7 @@
 
 .profil-page {
   max-width: 1200px;
-  margin: 58px auto 50px;
+  margin: 58px auto 150px;
   position: relative;
 
   .log-container {
@@ -143,7 +143,7 @@
 
   h1 {
     text-align: center;
-    margin: 10px 0 6px;
+    margin: 25px 0 6px;
   }
 
   .img-container {
@@ -168,18 +168,33 @@
     }
   }
 
-  .profil-container {
+  .profil-container-update {
     display: grid;
     grid-template-columns: 60px 1fr;
   }
 
-  .profil-container> :first-child {
+  .profil-container-activite {
+    display: grid;
+    grid-template-columns: 1fr 853px;
+  }
+
+  .profil-container-update> :first-child,
+  .profil-container-activite> :first-child {
     grid-column: 1;
   }
 
-  .profil-container>h1,
-  .profil-container>.update-container {
+  .profil-container-update>h1,
+  .profil-container-update>.update-container,
+  .profil-container-activite>.activite-container {
     grid-column: 2;
+  }
+
+  .activite-container {
+    width: 55%;
+    background: $color-8;
+    border-radius: 20px;
+    margin: 20px auto 76px;
+    padding: 25px;
   }
 
   .update-container {

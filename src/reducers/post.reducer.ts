@@ -5,7 +5,9 @@ import {
     EDIT_COMMENT,
     GET_POSTS,
     LIKE_POST,
+    SHARE_POST,
     UNLIKE_POST,
+    UNSHARE_POST,
     UPDATE_POST
 } from "../actions/post.actions";
 import type { PostState } from "../main";
@@ -17,7 +19,8 @@ const initialState: PostState = {
         video: '',
         user: {},
         comments: [{}],
-        likes: []
+        likes: [],
+        shares: []
     }]
 };
 
@@ -68,6 +71,34 @@ export default function postReducer(state = initialState, action: any) {
                         return {
                             ...post,
                             likes: post.likes.filter((like: any) => Number(like.userId) !== action.payload.userId)
+                        };
+
+                    } else return post;
+                })
+            };
+
+        case SHARE_POST:
+            return {
+                ...state,
+                posts: state.posts.map((post) => {
+                    if (post.id_post === action.payload.postId) {
+                        return {
+                            ...post,
+                            shares: [...post.shares, action.payload.share]
+                        };
+
+                    } else return post;
+                })
+            };
+
+        case UNSHARE_POST:
+            return {
+                ...state,
+                posts: state.posts.map((post) => {
+                    if (post.id_post === action.payload.postId) {
+                        return {
+                            ...post,
+                            shares: post.shares.filter((share: any) => Number(share.userId) !== action.payload.userId)
                         };
 
                     } else return post;

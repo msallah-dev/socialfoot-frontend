@@ -9,6 +9,7 @@ import UserImage from "../Profil/UserImage";
 import PostImage from "./PostImage";
 import DeleteCard from "./DeleteCard";
 import CardComments from "./CardComments";
+import ShareButton from "./ShareButton";
 
 const Card = ({ post }: { post: any }) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -123,8 +124,9 @@ const Card = ({ post }: { post: any }) => {
                                 />
                                 <span>{post.comments.length}</span>
                             </div>
+
                             <LikeButton post={post} />
-                            <img src="./images/icons/share.svg" alt="share" />
+                            <ShareButton post={post} />
                         </div>
                         {showComments && <CardComments post={post} />}
                     </div>

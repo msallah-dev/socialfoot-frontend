@@ -45,7 +45,7 @@ const UpdateProfil = ({ userData }: { userData: UserState }) => {
   }
 
   return (
-    <div className="profil-container">
+    <div className="profil-container-update">
       <LeftNav />
       <h1> Profil de {userData.name}</h1>
       <div className="update-container">

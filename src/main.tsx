@@ -30,7 +30,8 @@ export type Post = {
   comments: [{
     id_commentaire?: number
   }],
-  likes: []
+  likes: [],
+  shares: []
 }
 
 export interface Follow {
@@ -53,6 +54,7 @@ export interface UserState {
   following: Follow[];
   followers: Follow[];
   noFollowing: User[];
+  shares: []
 }
 
 export interface PostState {

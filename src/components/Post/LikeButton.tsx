@@ -53,7 +53,11 @@ const LikeButton = ({ post }: { post: any }) => {
       {status && liked && (
         <img src="./images/icons/heart-filled.svg" onClick={unlike} alt="unlike" />
       )}
-      <span onClick={() => setLikersPopup(true)}>{post.likes.length}</span>
+      <span onClick={() =>
+        post.likes.length && setLikersPopup(true)
+      }>
+        {post.likes.length}
+      </span>
 
       {post.likes.length > 0 && likersPopup && (
         <div className="popup-container">
