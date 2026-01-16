@@ -33,7 +33,7 @@ const Card = ({ post }: { post: any }) => {
 
     useEffect(() => {
         if (userData) setIsLoading(false);
-
+        
         if (errorPost?.success) {
             setIsUpdated(false);
             errorPost.success = false;
@@ -71,7 +71,7 @@ const Card = ({ post }: { post: any }) => {
                         <div className="card-header">
                             <div className="pseudo">
                                 <h3> {post.user.name} </h3>
-                                {userData?.id_user !== post.user.id_user && (
+                                {userData?.id_user && userData.id_user !== post.user.id_user && (
                                     <FollowHandler idToFollow={post.user.id_user} type={"card"} />
                                 )}
                             </div>
@@ -107,7 +107,7 @@ const Card = ({ post }: { post: any }) => {
                             ></iframe>
                         )}
 
-                        {userData?.id_user === post.user.id_user && (
+                        {userData?.id_user && userData.id_user === post.user.id_user && (
                             <div className="button-container">
                                 <div onClick={() => setIsUpdated(!isUpdated)}>
                                     <img src="./images/icons/edit.svg" alt="edit" />
