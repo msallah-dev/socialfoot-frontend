@@ -195,6 +195,10 @@
     border-radius: 20px;
     margin: 20px auto 76px;
     padding: 25px;
+
+    ul li:not(:last-child) {
+      margin-bottom: 50px;
+    }
   }
 
   .update-container {

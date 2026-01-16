@@ -10,7 +10,7 @@ import { Tabs, Tab } from "@mui/material";
 const Profil = () => {
     const [onglet, setOnglet] = useState<number>(0);
     const status = useContext(StatusContext);
-    const userData = useSelector((state: RootState) => state.userReducer)
+    const userData = useSelector((state: RootState) => state.userReducer);
 
     return (
         <div className="profil-page">
@@ -38,9 +38,9 @@ const Profil = () => {
                 </Tabs>
             }
 
-            {status && userData ?
+            {status && userData?.id_user ?
                 onglet === 0 ?
-                    <ProfilSharedPosts postsShare={userData.shares} />
+                    <ProfilSharedPosts userId={userData.id_user} />
                     :
                     <UpdateProfil userData={userData} />
                 :
