@@ -53,6 +53,7 @@
         li {
           cursor: pointer;
           border-radius: 20px;
+          margin-bottom: 5px;
           padding: 10px 20px;
           transition: 0.2s;
 
@@ -72,6 +73,7 @@
 
         li:not(.active-btn) {
           &:hover {
+            background: $color-2;
             transform: translateX(3px);
           }
         }
